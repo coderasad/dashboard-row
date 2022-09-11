@@ -1,0 +1,173 @@
+/*SIDEBAR SECTION START*/
+.sidebar {
+  position         : fixed;
+  left             : 0;
+  top              : 0;
+  overflow-y       : auto;
+  width            : $sidebar-width;
+  height           : 100vh;
+  background-color : $bg-menu;
+  transition       : $transition-duration;
+  @include media-breakpoint(lg) {
+    width : 0;
+  }
+
+  .sidebar-brand {
+    height          : $topbar-height;
+    justify-content : center;
+  }
+
+  &-nav {
+    padding            : 30px 0;
+    height             : calc(100vh - $topbar-height);
+    overflow-y         : auto;
+
+    svg {
+      margin-right : 22px;
+
+      path {
+        transition : $transition-duration;
+      }
+    }
+
+    &-item {
+      margin-bottom : 30px;
+
+      &:last-child {
+        margin-bottom : 0;
+      }
+
+      .sidebar-nav-link {
+        position : relative;
+        padding  : 0 30px 0 40px;
+
+        &:after {
+          content          : "";
+          width            : 3px;
+          height           : 100%;
+          position         : absolute;
+          top              : 0;
+          right            : 0;
+          transform        : scale(0);
+          background-color : $primary;
+          transition       : $transition-duration;
+        }
+
+        &:hover,
+        &.active {
+          color : $white;
+
+          svg {
+            path {
+              fill : $primary;
+            }
+          }
+
+          &:after {
+            transform : scale(1);
+          }
+        }
+      }
+
+      //SUBMENU
+      &.has-submenu {
+        position : relative;
+
+        &:after {
+          position       : absolute;
+          content        : "";
+          right          : 30px;
+          top            : 12px;
+          border         : 1px solid $secondary;
+          border-right   : 0;
+          border-top     : 0;
+          height         : 7px;
+          width          : 7px;
+          pointer-events : none;
+          transform      : rotate(-45deg);
+          transition     : $transition-duration;
+        }
+
+        &:has(.sidebar-nav-link.active) {
+          &:after {
+            border-color : $primary;
+            transform    : rotate(135deg);
+          }
+        }
+
+        .submenu {
+          padding    : 0 30px 0 50px;
+          max-height : 0;
+          transition : max-height 0.2s ease-out;
+          overflow   : hidden;
+
+          .submenu-nav-link-text {
+            @include font-style(12, 30, 500)
+          }
+
+          svg {
+            margin-right : 12px;
+          }
+        }
+
+        .submenu-nav-item {
+          margin-top : 20px;
+        }
+
+        .submenu-nav-link {
+
+          &:hover {
+            svg {
+              path {
+                fill : $primary;
+              }
+            }
+
+            .submenu-nav-link-text {
+              color : $white;
+            }
+          }
+        }
+      }
+    }
+
+
+    /*SCROLLBAR HIDDEN*/
+
+    &::-webkit-scrollbar {
+      display : none; /* IE and Chrome & Opera */
+    }
+
+    -ms-overflow-style : none; /* IE and Edge */
+    scrollbar-width    : none; /* Firefox */
+
+    overflow-x         : scroll;
+    white-space        : nowrap;
+  }
+
+  .sidebar-overlay {
+    position         : fixed;
+    inset            : 0;
+    display          : none;
+    background-color : rgba(0, 0, 0, .60);
+    z-index          : -1;
+    transition       : .3s
+  }
+
+  @media(max-width : 991px) {
+    .sidebar-overlay {
+      display    : block;
+      opacity    : 0;
+      visibility : hidden
+    }
+  }
+}
+
+@media(max-width : 991px) {
+  .sidebar-active .sidebar-overlay {
+    opacity    : 1;
+    visibility : visible
+  }
+}
+
+/*SIDEBAR SECTION END*/

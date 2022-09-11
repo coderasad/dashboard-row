@@ -1,0 +1,130 @@
+* {
+  box-sizing : border-box;
+}
+
+body {
+  margin           : 0;
+  padding          : 0;
+  color            : $font-color;
+  font-family      : $font-family;
+  background-color : $bg-body;
+}
+
+a {
+  text-decoration : none;
+  color           : $secondary;
+  transition      : $transition-duration;
+}
+
+[type='button'] {
+  cursor : pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin : 0;
+}
+
+.h2, h2 {
+  @include font-style(24, 30, 500)
+}
+
+.h3, h3 {
+  @include font-style(20, 30, 500)
+}
+
+.h4, h4 {
+  @include font-style(16, 32, 500)
+}
+
+.fs-14 {
+  @include font-style(14, 30, 500)
+}
+
+.fs-12 {
+  @include font-style(12, 20, 400)
+}
+
+@include media-breakpoint(lg) {
+
+  .h2, h2 {
+    @include font-style(18, 30, 500)
+  }
+
+  .h3, h3 {
+    @include font-style(16, 26, 500)
+  }
+
+  .h4, h4 {
+    @include font-style(14, 28, 500)
+  }
+
+  .fs-14 {
+    @include font-style(13, 24, 500)
+  }
+
+  .fs-12 {
+    @include font-style(12, 20, 400)
+  }
+
+}
+
+.text-primary {
+  color : $primary;
+}
+
+.flex {
+  display : flex;
+}
+
+.flex-col {
+  flex-direction : column;
+}
+
+.items-center {
+  align-items : center;
+}
+
+.dropdown {
+  position : relative;
+
+  .arrow {
+    transition : $transition-duration;
+  }
+
+  &:has(.dropdown-menu.show) .arrow {
+    transform : rotate(180deg);
+  }
+}
+
+.ms-10, .mx-10 {
+  margin-left : 10px;
+}
+
+.me-10, .mx-10 {
+  margin-right : 10px;
+}
+
+.mt-10, .my-10 {
+  margin-top : 10px;
+}
+
+.mb-10, .mb-10 {
+  margin-bottom : 10px;
+}
+
+.mb-30 {
+  margin-bottom : 30px;
+  @include media-breakpoint(sm) {
+    margin-bottom : 15px;
+  }
+}
+
+.hover-primary {
+  &:hover {
+    color : $primary;
+  }
+}
+
+::placeholder {
+  color : #BDBDBD;
+}

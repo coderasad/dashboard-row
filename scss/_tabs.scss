@@ -1,0 +1,264 @@
+
+.divider {
+  width            : 100%;
+  height           : 2px;
+  display          : block;
+  margin-bottom    : 30px;
+  background-color : $border-color;
+}
+
+.switch {
+  display       : flex;
+  flex-wrap     : wrap;
+  align-items   : center;
+  color         : $secondary;
+  margin-bottom : 30px;
+  @include font-style(16, 32, 500);
+  transition    : $transition-duration;
+  @include media-breakpoint(sm) {
+    @include font-style(14, 26, 500);
+    margin-bottom : 15px;
+  }
+
+  &-button {
+    width        : 50px;
+    height       : 30px;
+    position     : relative;
+    display      : inline-block;
+    flex-shrink  : 0;
+    margin-right : 20px;
+    @include media-breakpoint(sm) {
+      height : 20px;
+      width  : 40px;
+    }
+
+    input {
+      opacity : 0;
+      width   : 0;
+      height  : 0;
+
+      &:checked + .slider {
+        background-color : $primary;
+
+        &:before {
+          background-color  : $white;
+          -webkit-transform : translateX(20px);
+          -ms-transform     : translateX(20px);
+          transform         : translateX(20px);
+        }
+      }
+
+      &:focus + .slider {
+        box-shadow : 0 0 1px #2196F3;
+      }
+    }
+
+    .slider {
+      position           : absolute;
+      cursor             : pointer;
+      top                : 0;
+      left               : 0;
+      right              : 0;
+      bottom             : 0;
+      border-radius      : 34px;
+      border             : 1px solid $primary;
+      -webkit-transition : $transition-duration;
+      transition         : $transition-duration;
+
+      &:before {
+        position           : absolute;
+        content            : '';
+        height             : 20px;
+        width              : 20px;
+        left               : 5px;
+        bottom             : 4px;
+        border-radius      : 50%;
+        background-color   : $primary;
+        -webkit-transition : $transition-duration;
+        transition         : $transition-duration;
+        @include media-breakpoint(sm) {
+          height : 10px;
+          width  : 10px;
+        }
+      }
+    }
+  }
+}
+
+.form-group {
+  margin-bottom : 30px;
+
+  label {
+    display       : block;
+    margin-bottom : 10px;
+    color         : $secondary;
+  }
+
+  input {
+    @include font-style(16, 32, 400);
+  }
+}
+
+.form-control {
+  width         : 100%;
+  height        : 60px;
+  display       : block;
+  padding       : 14px 20px;
+  border-radius : 10px;
+  border        : 1px solid $border-color;
+  transition    : $transition-duration;
+  @include media-breakpoint(sm) {
+    height : 44px;
+  }
+
+  &:focus {
+    outline      : 0;
+    border-color : $primary;
+  }
+
+  &:hover {
+    border-color : $primary;
+  }
+}
+
+
+/* colors */
+$blue             : #428BFF;
+$dark             : #333;
+$accent           : $blue;
+$accent-inactive  : desaturate($accent, 85%);
+$secondary        : $accent-inactive;
+
+
+/* tab setting */
+$tab-count        : 4;
+
+
+/* selectors relative to radio inputs */
+$label-selector   : "~ ul > li";
+$slider-selector  : "~ .slider";
+$content-selector : "~ .content > section";
+
+.tabs {
+  input[name="tab-control"] {
+    display : none;
+  }
+
+  .save-btn {
+    padding       : 10px 16px;
+    background    : $primary;
+    box-shadow    : 0 20px 50px rgba(255, 121, 1, 0.3);
+    border-radius : 5px;
+    color         : $white;
+    display       : inline-block;
+    border        : none;
+    cursor        : pointer;
+    transition    : $transition-duration;
+
+    &:hover {
+      box-shadow : 0 -20px 50px rgba(255, 121, 1, 0.3);
+    }
+  }
+
+  ul {
+    display         : flex;
+    flex-wrap       : wrap;
+    align-items     : center;
+    justify-content : center;
+    padding         : 30px 0 0 0;
+    margin          : 0;
+    list-style-type : none;
+    border-bottom   : 2px solid $border-color;
+
+    li {
+      padding    : 0 10px;
+      text-align : center;
+
+      button {
+        position         : relative;
+        padding          : 10px 16px;
+        font-weight      : 500;
+        font-size        : 16px;
+        line-height      : 28px;
+        cursor           : pointer;
+        border           : none;
+        background-color : transparent;
+        transition       : $transition-duration;
+
+        &:after {
+          width            : 100%;
+          height           : 3px;
+          content          : '';
+          position         : absolute;
+          left             : 0;
+          bottom           : -2px;
+          opacity          : 0;
+          visibility       : hidden;
+          background-color : $primary;
+          transform-origin : center;
+          transform        : scale(0);
+          transition       : $transition-duration;
+        }
+
+        &.active {
+          color : $primary;
+
+          &:after {
+            opacity    : 1;
+            visibility : visible;
+            transform  : scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    max-width : 1199px;
+    margin    : 0 auto;
+
+    .tab-pane {
+      display   : none;
+      max-width : 1000px;
+      padding   : 50px;
+      margin    : 0 auto;
+      @include media-breakpoint(sm) {
+        padding : 20px;
+      }
+
+      animation         : {
+        name            : content;
+        direction       : normal;
+        duration        : 0.3s;
+        timing-function : ease-in-out;
+        iteration-count : 1;
+      }
+
+      &.show {
+        display : block;
+      }
+    }
+  }
+
+  .text {
+    text-align          : center;
+    font-size           : 72px;
+    text-transform      : uppercase;
+    font-weight         : 800;
+    letter-spacing      : 15px;
+    -webkit-text-stroke : 1px #ff7901;
+    color               : transparent;
+  }
+
+
+  @keyframes content {
+    from {
+      opacity   : 0;
+      transform : translateY(5%);
+    }
+    to {
+      opacity   : 1;
+      transform : translateY(0%);
+    }
+  }
+}

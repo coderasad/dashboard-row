@@ -1,0 +1,375 @@
+/*TOPBAR SECTION START*/
+header {
+  height     : $topbar-height;
+  background : $bg-menu;
+  position   : fixed;
+  top        : 0;
+  left       : $sidebar-width;
+  width      : calc(100% - $sidebar-width);
+  padding    : 15px 30px;
+  z-index    : 9;
+  transition : $transition-duration;
+
+  @include media-breakpoint(lg) {
+    left  : 0;
+    width : 100%;
+  }
+
+  .topbar-section {
+    justify-content : flex-end;
+    color           : $white;
+    height          : 100%;
+
+    .h3 {
+      font-weight : 300;
+    }
+
+    span {
+      font-weight : 500;
+    }
+  }
+
+  .admin-nav {
+    margin-left : 30px;
+
+    .dropdown-toggle {
+      background    : $white;
+      color         : $font-color;
+      padding       : 10px 20px 10px 10px;
+      border-radius : 45px;
+      box-shadow    : 0 10px 20px rgba(0, 0, 0, 0.07);
+      @include media-breakpoint(sm) {
+        padding : 0;
+      }
+
+      .admin {
+        margin-right : 18px;
+
+        @include media-breakpoint(sm) {
+          margin-right : 0;
+          &-name {
+            display : none;
+          }
+        }
+      }
+
+      @include media-breakpoint(sm) {
+        .arrow {
+          display : none;
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    background    : #FFFFFF;
+    border        : 1px solid $border-color;
+    box-shadow    : 0 30px 20px -20px rgba(198, 211, 232, 0.2);
+    border-radius : 10px;
+    padding       : 50px 20px 20px;
+    position      : absolute;
+    width         : 100%;
+    top           : 40%;
+    left          : 0;
+    z-index       : -1;
+    opacity       : 0;
+    visibility    : hidden;
+    transition    : $transition-duration;
+    margin-top    : -20px;
+
+    &.show {
+      opacity    : 1;
+      visibility : visible;
+      margin-top : 0;
+    }
+
+    @include media-breakpoint(sm) {
+      width       : max-content;
+      right       : -10px;
+      left        : auto;
+      top         : 50px;
+      padding-top : 20px;
+
+      :before {
+        width            : 12px;
+        height           : 12px;
+        content          : "";
+        position         : absolute;
+        top              : -6px;
+        right            : 25px;
+        display          : block;
+        z-index          : 1;
+        transform        : rotate(-135deg);
+        background-color : #fff;
+        border-radius    : 0 0 3px;
+      }
+    }
+
+  }
+
+  .btn-logout {
+    color           : #FF5E5E;
+    background      : rgba(255, 1, 1, 0.1);
+    border-radius   : 5px;
+    justify-content : center;
+    padding         : 10px 0;
+    transition      : $transition-duration;
+    @include media-breakpoint(sm) {
+      font-size : 14px;
+    }
+
+    &:hover {
+      background : rgba(255, 1, 1, 0.2);
+    }
+  }
+
+
+  .btn-toggle-sidebar {
+    display          : none;
+    padding          : 0;
+    border           : none;
+    background-color : transparent;
+    position         : absolute;
+    left             : 30px;
+    z-index          : 9;
+    @include media-breakpoint(lg) {
+      display : block;
+    }
+
+    &:focus {
+      outline : 0;
+    }
+
+    .icon {
+      width              : 30px;
+      height             : 23px;
+      position           : relative;
+      display            : inline-block;
+      cursor             : pointer;
+      -webkit-transform  : rotate(0deg);
+      transform          : rotate(0deg);
+      -webkit-transition : 0.5s ease-in-out;
+      transition         : 0.5s ease-in-out;
+
+      span {
+        width              : 100%;
+        height             : 3px;
+        display            : block;
+        position           : absolute;
+        background         : $primary;
+        border-radius      : 9px;
+        opacity            : 1;
+        left               : 0;
+        -webkit-transform  : rotate(0deg);
+        transform          : rotate(0deg);
+        -webkit-transition : 0.25s ease-in-out;
+        transition         : 0.25s ease-in-out;
+
+        &:nth-child(1) {
+          top : 0;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          top : 10px;
+        }
+
+        &:nth-child(4) {
+          top : 20px;
+        }
+      }
+    }
+
+    &.open {
+      .icon {
+        span {
+          &:nth-child(1) {
+            top   : 18px;
+            width : 0;
+            left  : 50%;
+          }
+
+          &:nth-child(2) {
+            -webkit-transform : rotate(45deg);
+            transform         : rotate(45deg);
+          }
+
+          &:nth-child(3) {
+            -webkit-transform : rotate(-45deg);
+            transform         : rotate(-45deg);
+          }
+
+          &:nth-child(4) {
+            top   : 18px;
+            width : 0;
+            left  : 50%;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/*TOPBAR SECTION END*/
+
+/*MAIN-CONTENT*/
+.main-content {
+  padding    : 120px 30px 30px 254px;
+  transition : $transition-duration;
+  @include media-breakpoint(lg) {
+    padding-left : 30px;
+  }
+  @include media-breakpoint(sm) {
+    padding-top    : 105px;
+    padding-bottom : 15px;
+    padding-inline : 15px;
+  }
+
+  .profile-info {
+    margin-bottom : 30px;
+    @include media-breakpoint(md) {
+      flex-wrap : wrap;
+    }
+    @include media-breakpoint(sm) {
+      margin-bottom : 15px;
+    }
+  }
+
+  .card {
+    border-radius : 10px;
+    border        : 1px solid $border-color;
+    background    : $white;
+  }
+
+  .profile-avatar {
+    width           : 325px;
+    margin-right    : 30px;
+    padding         : 30px;
+    gap             : 5px;
+    justify-content : center;
+    flex-shrink     : 0;
+    @include media-breakpoint(lg) {
+      width      : 190px;
+      text-align : center;
+    }
+    @include media-breakpoint(md) {
+      width         : 100%;
+      margin-bottom : 30px;
+    }
+
+    img {
+      border-radius : 50%;
+      margin-bottom : 10px;
+    }
+  }
+
+  .cards-wrapper {
+    padding   : 70px 30px;
+    flex-grow : 1;
+    @include media-breakpoint(lg) {
+      padding : 30px;
+    }
+    @include media-breakpoint(sm) {
+      padding : 15px;
+    }
+
+    .credit-card-row {
+      gap       : 30px;
+      flex-wrap : wrap;
+
+      .col {
+        flex      : 1 0 0;
+        min-width : 196px;
+
+        @include media-breakpoint(md) {
+          min-width : 170px;
+        }
+      }
+
+      .credit-card {
+        padding    : 30px;
+        position   : relative;
+        cursor     : pointer;
+        height     : 100%;
+        transition : $transition-duration;
+
+        @include media-breakpoint(md) {
+          padding : 20px;
+        }
+
+        &.active, &:hover {
+          border-color : $primary;
+
+          .credit-card-title {
+            color : $font-color;
+          }
+
+          .credit-card-number {
+            color : $font-color;
+          }
+
+          .delete-card {
+            background-color : #FFD7D7;
+
+            svg {
+              path {
+                fill : #FF4242;
+              }
+            }
+          }
+        }
+      }
+
+      .credit-card-title {
+        color      : $secondary;
+        transition : $transition-duration;
+      }
+
+      .credit-card-number {
+        color      : #BDBDBD;
+        word-break : break-all;
+        transition : $transition-duration;
+      }
+
+      .delete-card {
+        position         : absolute;
+        top              : 10px;
+        right            : 10px;
+        width            : 30px;
+        height           : 30px;
+        border-radius    : 50%;
+        border           : none;
+        background-color : #F2F2F4;
+        transition       : $transition-duration;
+
+
+        svg {
+          path {
+            transition : $transition-duration;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.sidebar-active {
+
+  header {
+    left  : $sidebar-width;
+    width : calc(100% - $sidebar-width);
+  }
+
+  .sidebar {
+    width   : $sidebar-width;
+    z-index : 9;
+  }
+
+  .main-content {
+    padding  : 120px 30px 30px 254px;
+    position : fixed;
+  }
+}

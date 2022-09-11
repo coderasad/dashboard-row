@@ -1,0 +1,31 @@
+@mixin font-style($size,$line-height,$weight) {
+  font-size: $size+px;
+  line-height: $line-height+px;
+  font-weight: $weight;
+}
+@mixin webkit-line($number) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $number;
+}
+
+@mixin media-breakpoint ($breakpoint) {
+
+  @if ($breakpoint == lg) {
+    @media (max-width: 991px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == md) {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == sm) {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+}
